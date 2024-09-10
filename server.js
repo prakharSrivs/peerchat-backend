@@ -4,10 +4,11 @@ import express, { urlencoded, json } from 'express';
 import cors from 'cors';
 import { generateUniqueRoomId } from './utils.js';
 
-const HTTP_SERVER_PORT = 4500, SOCKET_IO_SERVER_PORT = 5000;
+const HTTP_SERVER_PORT = 4500/* , SOCKET_IO_SERVER_PORT = 5000; */
 
 const app = express();
-const io = new Server(SOCKET_IO_SERVER_PORT,{
+const server = createServer(app);
+const io = new Server(server,{
     cors: true
 });
 
@@ -73,4 +74,4 @@ app.get('/status',(req,res)=>{
     return res.sendStatus(200);
 })
 
-app.listen(HTTP_SERVER_PORT, ()=> console.log("HTTP Server Listening on Port",HTTP_SERVER_PORT));
+server.listen(HTTP_SERVER_PORT, ()=> console.log("HTTP Server Listening on Port",HTTP_SERVER_PORT));
