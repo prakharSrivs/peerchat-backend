@@ -3,6 +3,7 @@ import { createServer } from 'http'
 import express, { urlencoded, json } from 'express';
 import cors from 'cors';
 import { generateUniqueRoomId } from './utils.js';
+import statusMonitor from 'express-status-monitor'
 
 const HTTP_SERVER_PORT = 4500/* , SOCKET_IO_SERVER_PORT = 5000; */
 
@@ -10,6 +11,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server,{cors: {origin: 'http://localhost:5173',   methods: ['GET', 'POST'],   credentials: true}});
 
+app.use(statusMonitor());
 app.use(cors());
 app.use(urlencoded({ extended:true }))
 app.use(json());
