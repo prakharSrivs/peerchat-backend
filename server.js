@@ -70,6 +70,7 @@ app.post('/room/isValid',(req,res)=>{
 })
 
 app.get('/status',(req,res)=>{
+    console.log(" Server running OK ");
     return res.sendStatus(200);
 })
 
